@@ -8,31 +8,31 @@ class SocialIcons {
         this.icons = {
             twitter: {
                 url: 'https://twitter.com/defendraltd',
-                icon: 'fab fa-twitter',
+                icon: '🐦', // Using emoji fallback for GitHub Pages
                 label: 'Follow us on Twitter',
                 ariaLabel: 'Follow Defendra on Twitter (opens in new tab)'
             },
             facebook: {
                 url: 'https://www.facebook.com/people/Defendra/61561686682282/',
-                icon: 'fab fa-facebook-f',
+                icon: '📘', // Using emoji fallback for GitHub Pages
                 label: 'Like us on Facebook',
                 ariaLabel: 'Like Defendra on Facebook (opens in new tab)'
             },
             instagram: {
                 url: 'https://www.instagram.com/defendra_solutions',
-                icon: 'fab fa-instagram',
+                icon: '📷', // Using emoji fallback for GitHub Pages
                 label: 'Follow us on Instagram',
                 ariaLabel: 'Follow Defendra on Instagram (opens in new tab)'
             },
             linkedin: {
                 url: 'https://www.linkedin.com/company/defendra',
-                icon: 'fab fa-linkedin-in',
+                icon: '💼', // Using emoji fallback for GitHub Pages
                 label: 'Connect on LinkedIn',
                 ariaLabel: 'Connect with Defendra on LinkedIn (opens in new tab)'
             },
             youtube: {
                 url: 'https://www.youtube.com/@defendra',
-                icon: 'fab fa-youtube',
+                icon: '📺', // Using emoji fallback for GitHub Pages
                 label: 'Subscribe on YouTube',
                 ariaLabel: 'Subscribe to Defendra on YouTube (opens in new tab)'
             }
@@ -44,6 +44,32 @@ class SocialIcons {
     init() {
         this.createSocialIcons();
         this.addEventListeners();
+        this.checkFontAwesome();
+    }
+
+    checkFontAwesome() {
+        // Check if FontAwesome is loaded and update icons accordingly
+        const testElement = document.createElement('i');
+        testElement.className = 'fas fa-home';
+        testElement.style.display = 'none';
+        document.body.appendChild(testElement);
+        
+        const computedStyle = window.getComputedStyle(testElement, ':before');
+        const fontFamily = computedStyle.getPropertyValue('font-family');
+        
+        document.body.removeChild(testElement);
+        
+        // If FontAwesome is loaded, update icons
+        if (fontFamily && fontFamily.includes('Font Awesome')) {
+            this.icons.twitter.icon = '<i class="fab fa-twitter" aria-hidden="true"></i>';
+            this.icons.facebook.icon = '<i class="fab fa-facebook-f" aria-hidden="true"></i>';
+            this.icons.instagram.icon = '<i class="fab fa-instagram" aria-hidden="true"></i>';
+            this.icons.linkedin.icon = '<i class="fab fa-linkedin-in" aria-hidden="true"></i>';
+            this.icons.youtube.icon = '<i class="fab fa-youtube" aria-hidden="true"></i>';
+            
+            // Recreate icons with FontAwesome
+            this.createSocialIcons();
+        }
     }
 
     createSocialIcons() {
@@ -115,7 +141,7 @@ class SocialIcons {
                aria-label="${iconData.ariaLabel}"
                title="${iconData.label}"
                data-platform="${platform}">
-                <i class="${iconData.icon}" aria-hidden="true"></i>
+                ${iconData.icon}
                 ${config.showLabels ? `<span class="sr-only">${iconData.label}</span>` : ''}
             </a>
         `;

@@ -4,19 +4,63 @@
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
+    const body = document.body;
 
     if (mobileMenuBtn && navLinks) {
         mobileMenuBtn.addEventListener('click', function(e) {
             e.stopPropagation();
-            navLinks.classList.toggle('active');
+            e.preventDefault();
+            
+            // Toggle active state
+            const isActive = navLinks.classList.contains('active');
+            
+            if (isActive) {
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                mobileMenuBtn.innerHTML = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            } else {
+                navLinks.classList.add('active');
+                body.classList.add('nav-open');
+                mobileMenuBtn.innerHTML = '✕';
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+            }
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                mobileMenuBtn.innerHTML = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
         });
 
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             if (!event.target.closest('#main-nav')) {
                 navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                mobileMenuBtn.innerHTML = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             }
         });
+
+        // Handle escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                body.classList.remove('nav-open');
+                mobileMenuBtn.innerHTML = '☰';
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Set initial aria attributes
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-controls', 'nav-links');
+        navLinks.setAttribute('id', 'nav-links');
     }
 
     // Blog search functionality

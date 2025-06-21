@@ -9,7 +9,7 @@ class ServicesOverview {
             {
                 id: 'cctv',
                 title: 'CCTV Installation',
-                icon: 'fas fa-video',
+                icon: '📹', // Using emoji fallback for GitHub Pages
                 description: 'Professional surveillance systems with HD cameras and remote monitoring.',
                 features: ['HD & 4K Cameras', 'Night Vision', 'Mobile Access'],
                 category: 'surveillance',
@@ -30,7 +30,7 @@ class ServicesOverview {
             {
                 id: 'burglar-alarm',
                 title: 'Burglar Alarms',
-                icon: 'fas fa-shield-alt',
+                icon: '🛡️', // Using emoji fallback for GitHub Pages
                 description: 'Advanced alarm systems with 24/7 monitoring and instant alerts.',
                 features: ['24/7 Monitoring', 'Smart Sensors', 'Mobile Alerts'],
                 category: 'protection',
@@ -51,7 +51,7 @@ class ServicesOverview {
             {
                 id: 'access-control',
                 title: 'Access Control',
-                icon: 'fas fa-key',
+                icon: '🔑', // Using emoji fallback for GitHub Pages
                 description: 'Secure entry systems with keycard, biometric, and mobile access.',
                 features: ['Keycard Access', 'Biometric', 'Mobile Control'],
                 category: 'access',
@@ -72,7 +72,7 @@ class ServicesOverview {
             {
                 id: 'intercom',
                 title: 'Intercom Systems',
-                icon: 'fas fa-phone',
+                icon: '📞', // Using emoji fallback for GitHub Pages
                 description: 'Modern communication systems with video calling and remote access.',
                 features: ['Video Calling', 'Remote Access', 'Multi-Unit'],
                 category: 'communication',
@@ -93,7 +93,7 @@ class ServicesOverview {
             {
                 id: 'smart-home',
                 title: 'Smart Home Security',
-                icon: 'fas fa-home',
+                icon: '🏠', // Using emoji fallback for GitHub Pages
                 description: 'Integrated smart security with automation and voice control.',
                 features: ['Voice Control', 'Automation', 'Integration'],
                 category: 'smart',
@@ -114,7 +114,7 @@ class ServicesOverview {
             {
                 id: 'motion-sensors',
                 title: 'Motion Sensors',
-                icon: 'fas fa-running',
+                icon: '🏃', // Using emoji fallback for GitHub Pages
                 description: 'Advanced motion detection with pet-friendly technology.',
                 features: ['Pet-Friendly', 'Wireless', 'Smart Detection'],
                 category: 'detection',
@@ -225,7 +225,7 @@ class ServicesOverview {
             <div class="service-card-compact" data-service="${service.id}">
                 <div class="service-header">
                     <div class="service-icon">
-                        <i class="${service.icon}" aria-hidden="true"></i>
+                        ${service.icon}
                     </div>
                     <h3 class="service-title">${service.title}</h3>
                 </div>
@@ -258,7 +258,7 @@ class ServicesOverview {
         return `
             <div class="services-overview-footer">
                 <a href="services.html" class="view-all-services">
-                    <i class="fas fa-th-large" aria-hidden="true"></i>
+                    <span>📋</span>
                     View All Services
                 </a>
             </div>

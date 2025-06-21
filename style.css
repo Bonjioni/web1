@@ -52,6 +52,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 1rem 20px;
+    position: relative;
 }
 
 .logo {
@@ -63,6 +64,7 @@ body {
     text-decoration: none;
     transition: all 0.3s ease;
     cursor: pointer;
+    z-index: 1001;
 }
 
 .logo:hover {
@@ -102,6 +104,8 @@ body {
     display: flex;
     list-style: none;
     gap: 2rem;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
@@ -124,6 +128,9 @@ body {
     font-size: 1.5rem;
     cursor: pointer;
     color: #333;
+    z-index: 1001;
+    position: relative;
+    padding: 0.5rem;
 }
 
 #show-nav-btn {
@@ -1249,19 +1256,28 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Mobile Navigation Fixes */
+    #main-nav .container {
+        position: relative;
+    }
+    
     .nav-links {
-        position: fixed;
+        position: absolute;
         top: 100%;
         left: 0;
         right: 0;
         background: white;
         flex-direction: column;
-        padding: 2rem;
+        padding: 1rem 20px 2rem;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         transform: translateY(-100%);
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
+        z-index: 1000;
+        margin: 0;
+        gap: 0;
+        border-top: 1px solid #eee;
     }
 
     .nav-links.active {
@@ -1269,9 +1285,30 @@ footer {
         opacity: 1;
         visibility: visible;
     }
+    
+    .nav-links li {
+        margin: 0;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem 0;
+        color: #333;
+        font-size: 1.1rem;
+    }
 
     #mobile-menu-btn {
         display: block;
+    }
+
+    /* Ensure mobile menu works properly */
+    body.nav-open {
+        overflow: hidden;
     }
 
     .hero-content h1 {
