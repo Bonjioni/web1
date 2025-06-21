@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://defendra.co.uk/sitemap.xml
+
+# Crawl delay (optional)
+Crawl-delay: 1
+
+# Disallow specific paths if needed
+# Disallow: /admin/
+# Disallow: /private/
+
+# Allow important pages
+Allow: /index.html
+Allow: /services.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /blog.html
+Allow: /cctv-installation.html
+Allow: /burglar-alarm.html
+Allow: /access-control.html
